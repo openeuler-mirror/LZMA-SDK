@@ -8,15 +8,27 @@ Software architecture description
 
 #### Installation
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1. Based on LZMA SDK version 19.00.
+
+2. Based on lzmacon directory code part of 7zip module, provide lzma command.
 
 #### Instructions
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+This project mainly provides a lzma command for the following operations on the 7z file of LZMA compression algorithm:
+
+1. List and extract 7z files;
+
+2. List and extract encrypted (password protected) 7z files;
+
+3. List, extract encryption (password protection) + encryption header (no visible content, file list, no password) 7z file;
+
+4. Create 7z compressed document;
+
+5. Create encrypted (password protected) 7z compressed documents;
+
+6. Create encryption (password protection) + encryption header (no visible content, file list, no password) 7z archive.
+
+Specific usage can be obtained by LZMA -- help
 
 #### Contribution
 

@@ -9,15 +9,27 @@ The LZMA SDK provides the documentation, samples, header files, libraries, and t
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  基于LZMA SDK 19.00版本构建。
+
+2.  基于7zip模块的LzmaCon目录代码部分，提供lzma命令。
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+本项目主要提供一个lzma命令，供对lzma压缩算法的7z文件进行以下操作：
+
+1. 列出、提取7z文件；
+
+2. 列出、提取加密（密码保护）的7z文件；
+
+3. 列表，提取加密（密码保护）+加密头（无可见内容，文件列表，无密码）7z文件；
+
+4. 创建7z压缩文档；
+
+5. 创建加密（密码保护）7z压缩文档；
+
+6. 创建加密（密码保护）+加密头（无可见内容，文件列表，无密码）7z存档。
+
+具体使用方法可以使用lzma --help获取
 
 #### 参与贡献
 
