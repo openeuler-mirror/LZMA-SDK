@@ -8,7 +8,7 @@ Software architecture description
 
 #### Installation
 
-1. Based on LZMA SDK version 19.00.
+1. Based on LZMA SDK version 21.07.
 
 2. Based on lzmacon directory code part of 7zip module, provide lzma command.
 

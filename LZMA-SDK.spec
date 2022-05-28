@@ -1,10 +1,11 @@
+
 Name:           LZMA-SDK
-Version:        19.00
+Version:        21.07
 Release:        1
 Summary:        SDK for lzma compression
 License:        Public Domain
 URL:            http://sourceforge.net/projects/sevenzip/
-Source0:        https://sourceforge.net/projects/sevenzip/files/LZMA%20SDK/lzma1900.7z
+Source0:        https://sourceforge.net/projects/sevenzip/files/LZMA%20SDK/lzma2107.7z
 BuildRequires:  gcc-c++ p7zip
 %description
 The LZMA SDK provides the documentation, samples, header files, libraries, and
@@ -29,7 +30,8 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 Development headers for %{name}.
  
 %prep
-%setup -q -c -n lzma1900
+%setup -q -c -n lzma2107
+%define debug_package %{nil} 
 
 for f in .c .cpp .cs .dsp .dsw .h .java .txt makefile; do
    find . -iname "*$f" | xargs chmod -x
@@ -57,7 +59,6 @@ CPP/7zip/Archive/Archive2.def \
 CPP/7zip/Bundles/Alone7z/resource.rc \
 CPP/7zip/Bundles/Format7zR/resource.rc \
 CPP/7zip/Bundles/Format7zExtractR/resource.rc \
-CS/7zip/Compress/LzmaAlone/LzmaAlone.csproj \
 CS/7zip/Compress/LzmaAlone/LzmaAlone.sln \
 CPP/7zip/Bundles/LzmaCon/makefile.gcc; do
     iconv -f iso-8859-1 -t utf-8 $FILE > $FILE.utf8
@@ -71,19 +72,20 @@ make -f makefile.gcc clean all CXX="g++ %{optflags} -fPIC" CXX_C="gcc %{optflags
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_bindir}
-install -m0755 CPP/7zip/Bundles/LzmaCon/lzma %{buildroot}%{_bindir}
-mkdir -p %{buildroot}/%{_includedir}/lzma1900/
-find -iname '*.h' | xargs -I {} install -m0644 -D {} %{buildroot}/%{_includedir}/lzma1900/{}
+install -m 0755 CPP/7zip/Bundles/LzmaCon/_o/lzma %{buildroot}%{_bindir}
+mkdir -p %{buildroot}/%{_includedir}/lzma2107/
+find -iname '*.h' | xargs -I {} install -m 0755 -D {} %{buildroot}/%{_includedir}/lzma2107/{}
 
 %files
 %{_bindir}/*
  
 %files devel
-%{_includedir}/lzma1900/
+%{_includedir}/lzma2107/
 
 %files doc
 %doc DOC/7z*.txt DOC/Methods.txt DOC/lzma.txt DOC/lzma-history.txt
 
 %changelog
+* Fri May 27 2022 tanjinghui1 <tanjinghui1@h-partners.com> - 21.07-1
 * Fri Dec 4 2020 tangmeng5 <tangmeng5@huawei.com> - 19.00-1
 - package init

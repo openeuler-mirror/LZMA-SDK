@@ -9,7 +9,7 @@ The LZMA SDK provides the documentation, samples, header files, libraries, and t
 
 #### 安装教程
 
-1.  基于LZMA SDK 19.00版本构建。
+1.  基于LZMA SDK 21.07 版本构建。
 
 2.  基于7zip模块的LzmaCon目录代码部分，提供lzma命令。
 
