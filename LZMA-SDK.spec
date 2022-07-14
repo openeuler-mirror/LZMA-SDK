@@ -1,11 +1,11 @@
 
 Name:           LZMA-SDK
-Version:        21.07
+Version:        22.00
 Release:        1
 Summary:        SDK for lzma compression
 License:        Public Domain
 URL:            http://sourceforge.net/projects/sevenzip/
-Source0:        https://sourceforge.net/projects/sevenzip/files/LZMA%20SDK/lzma2107.7z
+Source0:        https://sourceforge.net/projects/sevenzip/files/LZMA%20SDK/lzma2200.7z
 BuildRequires:  gcc-c++ p7zip
 %description
 The LZMA SDK provides the documentation, samples, header files, libraries, and
@@ -30,7 +30,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 Development headers for %{name}.
  
 %prep
-%setup -q -c -n lzma2107
+%setup -q -c -n lzma2200
 %define debug_package %{nil} 
 
 for f in .c .cpp .cs .dsp .dsw .h .java .txt makefile; do
@@ -73,19 +73,20 @@ make -f makefile.gcc clean all CXX="g++ %{optflags} -fPIC" CXX_C="gcc %{optflags
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_bindir}
 install -m 0755 CPP/7zip/Bundles/LzmaCon/_o/lzma %{buildroot}%{_bindir}
-mkdir -p %{buildroot}/%{_includedir}/lzma2107/
-find -iname '*.h' | xargs -I {} install -m 0755 -D {} %{buildroot}/%{_includedir}/lzma2107/{}
+mkdir -p %{buildroot}/%{_includedir}/lzma2200/
+find -iname '*.h' | xargs -I {} install -m 0755 -D {} %{buildroot}/%{_includedir}/lzma2200/{}
 
 %files
 %{_bindir}/*
  
 %files devel
-%{_includedir}/lzma2107/
+%{_includedir}/lzma2200/
 
 %files doc
 %doc DOC/7z*.txt DOC/Methods.txt DOC/lzma.txt DOC/lzma-history.txt
 
 %changelog
+* Thu Jul 14 2022 tanjinghui1 <tanjinghui1@huawei.com> - 22.00-1
 * Fri May 27 2022 tanjinghui1 <tanjinghui1@h-partners.com> - 21.07-1
 * Fri Dec 4 2020 tangmeng5 <tangmeng5@huawei.com> - 19.00-1
 - package init
