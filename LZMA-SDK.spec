@@ -1,12 +1,13 @@
 
 Name:           LZMA-SDK
 Version:        22.00
-Release:        2
+Release:        3
 Summary:        SDK for lzma compression
 License:        Public Domain
 URL:            http://sourceforge.net/projects/sevenzip/
 Source0:        https://sourceforge.net/projects/sevenzip/files/LZMA%20SDK/lzma2200.7z
 BuildRequires:  gcc-c++ p7zip
+
 %description
 The LZMA SDK provides the documentation, samples, header files, libraries, and
 tools you need to develop applications that use LZMA compression.
@@ -72,7 +73,7 @@ make -f makefile.gcc clean all CXX="g++ %{optflags} -fPIC" CXX_C="gcc %{optflags
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_bindir}
-install -m 0755 CPP/7zip/Bundles/LzmaCon/_o/lzma %{buildroot}%{_bindir}
+install -m 0755 CPP/7zip/Bundles/LzmaCon/_o/lzma %{buildroot}%{_bindir}/LZMA-SDK
 mkdir -p %{buildroot}/%{_includedir}/lzma/
 find -iname '*.h' | xargs -I {} install -m 0755 -D {} %{buildroot}/%{_includedir}/lzma/{}
 
@@ -86,6 +87,9 @@ find -iname '*.h' | xargs -I {} install -m 0755 -D {} %{buildroot}/%{_includedir
 %doc DOC/7z*.txt DOC/Methods.txt DOC/lzma.txt DOC/lzma-history.txt
 
 %changelog
+* Mon Mar 06 2023 peijiankang <peijiankang@kylinos.cn> - 22.00-3
+- reslove the conflict between xz-lzma-compat and LZMA-SDK
+
 * Wed Aug 03 2022 tanjinghui1 <tanjinghui1@huawei.com> - 22.00-2
 - change header file path lzma2200 to lzma
 
