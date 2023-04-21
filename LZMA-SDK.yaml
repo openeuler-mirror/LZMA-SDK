@@ -1,0 +1,5 @@
+version_control: sourceforge.net
+src_repo: https://sourceforge.net/projects/sevenzip/files/7-Zip/
+tag_prefix: "^v"
+separator: "."
+
