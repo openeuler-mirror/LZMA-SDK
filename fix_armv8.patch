@@ -1,0 +1,16 @@
+diff -ur lzma2200/C/7zip_gcc_c.mak lzma2200_copy/C/7zip_gcc_c.mak
+--- lzma2200/C/7zip_gcc_c.mak	2023-05-11 16:12:19.150390423 +0800
++++ lzma2200_copy/C/7zip_gcc_c.mak	2023-05-26 16:14:38.672029962 +0800
+@@ -12,7 +12,7 @@
+ CFLAGS_BASE_LIST = -c
+ # for ASM file
+ # CFLAGS_BASE_LIST = -S
+-CFLAGS_BASE = -O2 $(CFLAGS_BASE_LIST) -Wall -Werror -Wextra $(CFLAGS_WARN) \
++CFLAGS_BASE = $(MY_ARCH_2) -O2 $(CFLAGS_BASE_LIST) -Wall -Werror -Wextra $(CFLAGS_WARN) \
+  -DNDEBUG -D_REENTRANT -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
+ 
+ 
+@@ -89,7 +89,7 @@
+ 
+ 
+ 
