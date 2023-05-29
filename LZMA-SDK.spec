@@ -1,11 +1,12 @@
 
 Name:           LZMA-SDK
 Version:        22.00
-Release:        3
+Release:        4
 Summary:        SDK for lzma compression
 License:        Public Domain
 URL:            http://sourceforge.net/projects/sevenzip/
 Source0:        https://sourceforge.net/projects/sevenzip/files/LZMA%20SDK/lzma2200.7z
+Patch0:         fix_armv8.patch
 BuildRequires:  gcc-c++ p7zip
 
 %description
@@ -68,8 +69,14 @@ CPP/7zip/Bundles/LzmaCon/makefile.gcc; do
 done
  
 %build
-make -f makefile.gcc clean all CXX="g++ %{optflags} -fPIC" CXX_C="gcc %{optflags} -fPIC" LDFLAGS="%{?__global_ldflags}" -C CPP/7zip/Bundles/LzmaCon
- 
+%if "%toolchain" == "clang"
+%ifarch aarch64
+MY_ARCH="-march=armv8-a+crc+crypto"
+%endif
+make -f makefile.gcc clean all MY_ARCH="$MY_ARCH" CXX="$CXX %{optflags} -fPIC -Wno-error=unused-but-set-variable -Wno-error=ignored-attributes" CXX_C="$CC %{optflags} -fPIC -Wno-error=unused-but-set-variable -Wno-error=ignored-attributes" LDFLAGS="%{?__global_ldflags}" -C CPP/7zip/Bundles/LzmaCon
+%else 
+make -f makefile.gcc clean all CXX="$CXX %{optflags} -fPIC -Wno-error=unused-but-set-variable" CXX_C="$CC %{optflags} -fPIC -Wno-error=unused-but-set-variable" LDFLAGS="%{?__global_ldflags}" -C CPP/7zip/Bundles/LzmaCon
+%endif
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_bindir}
@@ -87,6 +94,9 @@ find -iname '*.h' | xargs -I {} install -m 0755 -D {} %{buildroot}/%{_includedir
 %doc DOC/7z*.txt DOC/Methods.txt DOC/lzma.txt DOC/lzma-history.txt
 
 %changelog
+* Fri May 26 2023 Xiang Zhang <zhangxiang@iscas.ac.cn> - 22.00-4
+- Fix clang build error
+
 * Mon Mar 06 2023 peijiankang <peijiankang@kylinos.cn> - 22.00-3
 - reslove the conflict between xz-lzma-compat and LZMA-SDK
 
